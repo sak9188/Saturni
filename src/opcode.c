@@ -38,6 +38,84 @@ static Object* sat_convt2number(Object* obj)
 	return &cvt;
 }
 
+static Object* sat_convt2string(Object* obj)
+{
+	static Object cvt;
+	// TODO 
+}
+
+static sat_execute(Byte* pc)
+{
+	while(1)
+	{
+		switch ((OpCode)*pc++)
+		{
+			case NOP: break;
+		
+			case PUSH_NONE: tag(top++) = T_NONE; break;
+
+			case PUSH_BYTE: tag(top) = T_NUM; nvalue(top++) = *pc++; break;
+
+			case PUSH_WORD: tag(top) = T_NUM; nvalue(top++) = *((Word*)(pc));
+				pc += sizeof(Word);
+				break;
+
+			case PUSH_FLOAT: tag(top) = T_NUM; nvalue(top++) = *((float*)(pc));
+				pc += sizeof(float);
+				break;
+
+			case PUSH_STRING:
+			{
+				int w = *((Word*)(pc));
+
+				pc += sizeof(Word);
+
+				tag(top) = T_STRING;
+				svalue(top++) = sat_constant[w];
+			}
+			break;
+			
+			case PUSH_0: tag(top) = T_NUM; nvalue(top++) = 0; break;
+			case PUSH_1: tag(top) = T_NUM; nvalue(top++) = 1; break;
+			case PUSH_2: tag(top) = T_NUM; nvalue(top++) = 2; break;
+			case PUSH_3: tag(top) = T_NUM; nvalue(top++) = 3; break;
+			case PUSH_4: tag(top) = T_NUM; nvalue(top++) = 4; break;
+			case PUSH_5: tag(top) = T_NUM; nvalue(top++) = 5; break;
+			case PUSH_6: tag(top) = T_NUM; nvalue(top++) = 6; break;
+			case PUSH_7: tag(top) = T_NUM; nvalue(top++) = 7; break;
+
+			case PUSH_OBJECT: *top = *(top - 3); top++; break;
+
+			case EQOP:
+			{
+				Object* l = top-2;
+				Object* r = top-1;
+				--top;
+
+				if(tag(l) != tag(r))
+				{
+					tag(top-1) = T_NONE;
+				}else
+				{
+					switch (tag(l))
+					{
+					case T_NONE:
+						break;
+					
+					default:
+						break;
+					}
+				}
+
+			}
+			break;
+
+			default:
+				break;
+		}
+	}
+}
+
 // 一些快捷函数
 int sat_is_number(Object* obj)
 {
