@@ -1,1 +1,73 @@
 这是一个自制的编程语言
+
+下面是这个语言的范式
+
+/*
+func Int Transfer(None e, Tester a):
+	return e + a
+
+
+// Class Type
+class Test:
+
+	// class variable
+	static Int ANum {0}	
+
+	// object variable
+	Int bNum {1}
+
+	// private function
+	func None __test(Int a):
+		return None
+
+	// protected Function
+	func None _Test(Int a, String a):
+		return None
+
+	// public Function
+	func None Test(Int a, string b):
+		print("Tester")
+		print(this.a)
+	
+	// Class Function
+	static func Int Test(Int a, string b) 
+		return a
+
+	// Generic	
+	typename<TestA, TestB>
+	func delctype(TestA+TestB) getName(Int b, string b):
+		return None
+
+
+// inheritance
+class TestA(Test):
+	// overload function
+	func None Test(Int a):
+		print(a)
+
+
+// generic class
+typename<ClassA>
+class TestB:
+	static ClassA Anum;
+
+
+// interactive with Cfunction
+import Tester // a c moudule named Tseter
+import ctypes as c
+
+
+clss OpenGLClass:
+
+	// attribute describe a cfunction
+	[Tester.Add, c.Int32, c.UInt32, c.VoidPtr]
+	func Int Add(c.UInt32 a, c.VoidPtr b)
+
+
+gl = OpenGLClass()
+gl.Add(1, 2)
+
+
+func main(List<String> args):
+	return
+*/

@@ -17,13 +17,15 @@ typedef enum
 
 typedef enum
 {
+	T_MARK,
 	T_NONE,
 	T_NUM,
 	T_STRING,
 	T_FUNCTION,
 	T_CFUNCTION,
 	T_ARRAY,
-	T_USERDATA
+	T_USERDATA,
+	T_DICT
 } Type;
 
 typedef void (*CFunction) (void);
@@ -42,7 +44,7 @@ typedef struct Object
 {
 	/* data */
 	Type	tag;
-	Value	Value;
+	Value	value;
 } Object;
 
 typedef struct
@@ -59,14 +61,14 @@ typedef struct
 #define fvalue(o)	((o)->value.f)
 #define uvalue(o)	((o)->value.u)
 
-#define s_name(i)
-#define s_object(i)	(gt)
+#define s_name(i)	(sat_dict[i].name)
+#define s_object(i)	(sat_dict[i].object)
 #define s_tag(i)	(tag(&s_object(i)))
-#define s_nvalue(i)
-#define s_bvalue(i)
-#define s_fvlaue(i)
-#define s_uvalue(i)
+#define s_nvalue(i)	(nvalue(&s_object(i)))
+#define s_bvalue(i)	(bvalue(&s_object(i)))
+#define s_fvlaue(i)	(fvalue(&s_object(i)))
+#define s_uvalue(i)	(uvalue(&s_object(i)))
 
-
-
+int		sat_execute		(Byte *pc);
+void	sat_mark_stack	(void);
 #endif
