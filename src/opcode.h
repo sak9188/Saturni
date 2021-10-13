@@ -11,9 +11,15 @@ typedef unsigned short Word;
 // 这里是定义的指令
 typedef enum
 {
+	// 这个是程序中断
 	NOP,
+
 	PUSH_NONE,
+
+	// 把一些常用数字推入栈中
 	PUSH_0, PUSH_1, PUSH_2, PUSH_3, PUSH_4, PUSH_5, PUSH_6, PUSH_7,
+
+	// 把一些基础变量推入栈中
 	PUSH_BYTE, PUSH_WORD, PUSH_FLOAT, PUSH_STRING, 
 
 	PUSH_LOCAL0, PUSH_LOCAL1, PUSH_LOCAL2, PUSH_LOCAL3,
@@ -36,10 +42,17 @@ typedef enum
 
 	CREAT_DICT,
 	CREAT_ARRAY,
-	
+
+	// 等于	
 	EQOP,
+
+	// 小于等于
 	LTOP,
+
+	// 小于
 	LEOP,
+
+	// 加
 	ADDOP,
 	SUBOP,
 	MULTOP,
@@ -56,6 +69,7 @@ typedef enum
 	RESET,
 } OpCode;
 
+// 自己定义的一些基础类型
 typedef enum
 {
 	T_MARK,
@@ -73,7 +87,6 @@ typedef void (*CFunction) (void);
 
 typedef union
 {
-	/* data */
 	CFunction	f;
 	float		n;
 	char		*s;
@@ -83,14 +96,12 @@ typedef union
 
 typedef struct Object
 {
-	/* data */
 	Type	tag;
 	Value	value;
 } Object;
 
 typedef struct
 {
-	/* data */
 	char	*name;
 	Object	object;
 } Symbol;
